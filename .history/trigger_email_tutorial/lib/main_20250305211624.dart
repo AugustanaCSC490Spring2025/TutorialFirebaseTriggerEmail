@@ -40,7 +40,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
  
   Future<void> _sendEmail() async {
-      //This part code was taken from Firebase Trigger Email Documentation and part from copilot
+      //This part code was taken from Firebase Trigger Email Documentation and part from chatgpt
       FirebaseFirestore.instance.collection('mail').add({
         'to': ['isabellesmart21@augustana.edu'],
         'message': {

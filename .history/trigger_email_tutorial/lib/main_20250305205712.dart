@@ -1,15 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_admin/firebase_admin.dart' as admin;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'firebase_options.dart';
 
-Future<void> main() async {
+void main() {
+  void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MyApp());
+}
 }
 
 class MyApp extends StatelessWidget {
@@ -40,16 +43,20 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
  
   Future<void> _sendEmail() async {
-      //This part code was taken from Firebase Trigger Email Documentation and part from copilot
-      FirebaseFirestore.instance.collection('mail').add({
-        'to': ['isabellesmart21@augustana.edu'],
-        'message': {
-          'subject': "Hello from Firebase!",
-          'text': "This is the plaintext section of the email body.",
-          'html': "This is the <code>HTML</code> section of the email body.",
-        },
-      });
-      print("Email sent successfully");
+    try{
+    //This part code was taken from Firebase Trigger Email Documentation and part from chatgpt
+    await FirebaseFirestore.instance.collection('mail').add({
+      'to': ['isabellesmart21@augustana.edu'],
+      'message': {
+        'subject': "Hello from Firebase!",
+        'text': "This is the plaintext section of the email body.",
+        'html': "This is the <code>HTML</code> section of the email body.",
+      },
+    });
+    } on FirebaseException catch (e) {
+      print(e);
+    }
+    //.then(() => console.log("Queued email for delivery!"));
    
   }
 
