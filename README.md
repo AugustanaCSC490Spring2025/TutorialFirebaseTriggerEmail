@@ -4,3 +4,5 @@ A walk through of the steps to initialize/setup the firebase trigger email exten
 Resources we used: 
 https://stackoverflow.com/questions/73916737/how-to-setup-firebase-trigger-mail-and-cloud-functions 
 https://firebase.google.com/docs/extensions/official/firestore-send-email The code that we used in flutter to send the email was heavily based off the code in here.
+https://invertase.io/blog/send-email-extension
+https://www.youtube.com/watch?v=NFPdeVIMBFo
