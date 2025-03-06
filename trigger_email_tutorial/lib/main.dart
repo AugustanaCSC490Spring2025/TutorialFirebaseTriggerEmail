@@ -1,14 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'firebase_options.dart';
-
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -39,18 +36,14 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
  
-  Future<void> _sendEmail() async {
-      //This part code was taken from Firebase Trigger Email Documentation and part from copilot
-      FirebaseFirestore.instance.collection('mail').add({
-        'to': ['isabellesmart21@augustana.edu'],
-        'message': {
-          'subject': "Hello from Firebase!",
-          'text': "This is the plaintext section of the email body.",
-          'html': "This is the <code>HTML</code> section of the email body.",
-        },
-      });
-      print("Email sent successfully");
-   
+  void _sendEmail() {
+    FirebaseFirestore.instance.collection('mail').add({
+      'to': ['greysonhansen21@augustana.edu'],
+      'message': {
+        'subject': 'Test Sending from Flutter',
+        'text': 'Making sure that the email correctly gets sent with flutter',
+      },
+  });
   }
 
   @override
