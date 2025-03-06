@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -32,7 +37,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
  
   void _sendEmail() {
-   
+    FirebaseFirestore.instance.collection('mail').add({
+      'to': ['greysonhansen21@augustana.edu'],
+      'message': {
+        'subject': 'Test Sending from Flutter',
+        'text': 'Making sure that the email correctly gets sent with flutter',
+      },
+  });
   }
 
   @override
